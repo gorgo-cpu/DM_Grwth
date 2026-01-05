@@ -30,7 +30,7 @@
     "tailwindcss-animate": "^1.0.7",
     "zod": "^4.3.4"
   },
-  "devDependencies": {
+   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.4",
