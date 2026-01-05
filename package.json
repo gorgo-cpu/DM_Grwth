@@ -44,4 +44,16 @@
     "tailwindcss": "^3.4.14",
     "typescript": "^5"
   }
+
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "pages:build": "next build && npx @cloudflare/next-on-pages",
+  "start": "next start",
+  "lint": "eslint .",
+  "typecheck": "tsc --noEmit",
+  "format": "prettier --write .",
+  "sitemap": "next-sitemap"
+}
+  
 }
