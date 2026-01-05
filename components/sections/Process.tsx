@@ -9,10 +9,10 @@ export function Process() {
         <div className="space-y-3 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.08em] text-primary">Process</p>
           <h2 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl">
-            Here’s our step-by-step plan.
+            Our step-by-step plan.
           </h2>
           <p className="text-lg text-muted-foreground sm:text-xl">
-            We don't reinvent the wheel—we make it rounder. Highly personalized outbound that converts into $$$.
+            We do not reinvent the wheel; we make it rounder. Highly personalized outbound that converts into $$$.
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-2">

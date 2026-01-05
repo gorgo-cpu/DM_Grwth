@@ -3,7 +3,7 @@ export const siteConfig = {
   description:
     "Personalized outbound that brings in high-paying clients. Proven outbound systems to position you as the go-to expert in your niche.",
   tagline: "Outbound that books revenue-ready conversations in 90 days.",
-  url: "http://localhost:3000",
+  url: "http://datamodulator.ro",
   nav: [
     { label: "Problems", href: "#problems" },
     { label: "Solution", href: "#solution" },
