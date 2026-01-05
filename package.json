@@ -5,13 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "pages:build": "next build && npx @cloudflare/next-on-pages",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "sitemap": "next-sitemap",
-    "pages:build": "npx @cloudflare/next-on-pages@1 build",
-    "pages:dev": "npx @cloudflare/next-on-pages@1 dev"
+    "sitemap": "next-sitemap"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -48,7 +47,4 @@
     "tailwindcss": "^3.4.14",
     "typescript": "^5"
   }
-
-  "pages:build": "next build && npx @cloudflare/next-on-pages"
-
 }
