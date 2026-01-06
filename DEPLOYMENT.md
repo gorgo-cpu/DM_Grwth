@@ -11,6 +11,7 @@ Navigate to your Cloudflare Pages project settings and configure:
 **Framework preset:** Next.js
 
 **Build command:**
+<<<<<<< HEAD
 npm run build
 
 **Build output directory:**
@@ -42,11 +43,53 @@ MAILGUN_API_BASE=https://api.mailgun.net
 1. Ensure your Supabase project has a `leads` table created via the provided migration
 2. Get your Supabase URL from: Project Settings -> API -> Project URL
 3. Get your Service Role Key from: Project Settings -> API -> service_role key (keep this secret)
+=======
+```
+npm run build
+```
+
+**Build output directory:**
+```
+out
+```
+
+**Node version:**
+```
+22.16.0
+```
+
+### Environment Variables
+Set these in Cloudflare Pages dashboard under Settings → Environment variables:
+
+**Production & Preview environments:**
+```
+NEXT_PUBLIC_SITE_URL=https://datamodulator.ro
+SUPABASE_URL=your-project-url.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+**Optional (for analytics):**
+```
+NEXT_PUBLIC_POSTHOG_KEY=your-posthog-key
+NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
+```
+
+### Supabase Setup
+1. Your Supabase database already has a `leads` table created via migration
+2. Get your Supabase URL from: Project Settings → API → Project URL
+3. Get your Service Role Key from: Project Settings → API → service_role key (⚠️ Keep this secret!)
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
 4. Add both values to Cloudflare Pages environment variables
 
 ## DNS Configuration
 Ensure your custom domain `datamodulator.ro` has a CNAME record pointing to:
+<<<<<<< HEAD
 dm-grwth.pages.dev
+=======
+```
+dm-grwth.pages.dev
+```
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
 
 ## Testing the Deployment
 
@@ -72,11 +115,16 @@ curl -X POST https://dm-grwth.pages.dev/api/lead \
     "message": "This is a test message with more than ten characters"
   }'
 ```
+<<<<<<< HEAD
 Expected response: {"ok":true}
+=======
+Expected response: `{"ok":true}`
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
 
 ## Deployment Architecture
 
 ### Static Site
+<<<<<<< HEAD
 Next.js app exported as static HTML/CSS/JS
 All pages pre-rendered at build time
 Served from Cloudflare's global CDN
@@ -99,10 +147,34 @@ Access your Supabase dashboard:
 Go to Table Editor
 Select `leads` table
 View all submissions with timestamps
+=======
+- Next.js app exported as static HTML/CSS/JS
+- All pages pre-rendered at build time
+- Served from Cloudflare's global CDN
+
+### Serverless Functions
+- `/api/lead` handled by Cloudflare Pages Function
+- Source: `functions/api/lead.ts`
+- Runtime: Cloudflare Workers (V8 isolate)
+- Database: Supabase PostgreSQL
+
+### Lead Storage Flow
+1. User submits form → POST to `/api/lead`
+2. Cloudflare Pages Function validates data
+3. Data inserted into Supabase `leads` table
+4. Success response returned to client
+
+## Viewing Leads
+Access your Supabase dashboard:
+1. Go to Table Editor
+2. Select `leads` table
+3. View all submissions with timestamps
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
 
 ## Troubleshooting
 
 ### Build Failures
+<<<<<<< HEAD
 Check that Node 22 is selected in Cloudflare build settings
 Verify package.json and package-lock.json are committed
 Review build logs in Cloudflare Pages dashboard
@@ -133,3 +205,36 @@ Note: `/api/lead` won't work in local dev since it requires Cloudflare Pages run
 View function invocations: Cloudflare Dashboard -> Pages -> dm-grwth -> Functions
 View logs: Use `wrangler pages deployment tail` (requires Wrangler CLI)
 Database monitoring: Supabase Dashboard -> Database -> Logs
+=======
+- Check that Node 22 is selected in Cloudflare build settings
+- Verify `package.json` and `package-lock.json` are committed
+- Review build logs in Cloudflare Pages dashboard
+
+### 404 on Homepage
+- Verify build output directory is set to `out`
+- Check that `next.config.ts` has `output: "export"`
+- Confirm build succeeded and generated files in `out/index.html`
+
+### API Endpoint Not Working
+- Verify `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are set in Cloudflare
+- Check Cloudflare Functions logs for errors
+- Verify the `functions/api/lead.ts` file is committed
+- Test with curl command above to see exact error
+
+### CORS Errors
+- Cloudflare Pages Functions handle CORS automatically
+- Check browser console for specific error messages
+- Verify request is going to correct domain
+
+## Local Development
+```bash
+npm install
+npm run dev
+```
+Note: `/api/lead` won't work in local dev since it requires Cloudflare Pages runtime. Test after deployment.
+
+## Monitoring
+- View function invocations: Cloudflare Dashboard → Pages → dm-grwth → Functions
+- View logs: Use `wrangler pages deployment tail` (requires Wrangler CLI)
+- Database monitoring: Supabase Dashboard → Database → Logs
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24

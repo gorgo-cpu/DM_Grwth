@@ -1,6 +1,10 @@
 # DM Growth
 
+<<<<<<< HEAD
 Framer-style marketing site built with Next.js, deployed on Cloudflare Pages with Supabase backend for lead capture.
+=======
+Framer-style marketing site built with Next.js, deployed on Cloudflare Pages with Supabase backend.
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
 
 ## Stack
 - Next.js 15 (App Router, Static Export) + TypeScript
@@ -26,9 +30,15 @@ Framer-style marketing site built with Next.js, deployed on Cloudflare Pages wit
 - `npm run sitemap` - generate sitemap/robots via next-sitemap
 
 ## Deployment
+<<<<<<< HEAD
 See `DEPLOYMENT.md` for Cloudflare Pages deployment instructions.
 
 Quick setup:
+=======
+See [DEPLOYMENT.md](DEPLOYMENT.md) for complete Cloudflare Pages deployment instructions.
+
+**Quick setup:**
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
 1. Connect your GitHub repo to Cloudflare Pages
 2. Set build command: `npm run build`
 3. Set output directory: `out`
@@ -68,15 +78,22 @@ out/                    # Build output (static site)
 ```
 
 ## Environment Variables
+<<<<<<< HEAD
 See `.env.example` for local development and `DEPLOYMENT.md` for production setup.
 
 Local development:
+=======
+See `.env.example` for local development and DEPLOYMENT.md for production setup.
+
+**Local development:**
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
 ```
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 NEXT_PUBLIC_POSTHOG_KEY=
 NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
 ```
 
+<<<<<<< HEAD
 Production (Cloudflare Pages):
 ```
 NEXT_PUBLIC_SITE_URL=https://datamodulator.ro
@@ -95,3 +112,14 @@ MAILGUN_API_BASE=https://api.mailgun.net
 
 ## Lead Storage
 All form submissions are stored in Supabase PostgreSQL. Access your leads in the Supabase dashboard -> Table Editor -> `leads` table.
+=======
+**Production (Cloudflare Pages):**
+```
+NEXT_PUBLIC_SITE_URL=https://datamodulator.ro
+SUPABASE_URL=your-project-url.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+## Lead Storage
+All form submissions are stored in Supabase PostgreSQL. Access your leads in the Supabase dashboard → Table Editor → `leads` table.
+>>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
