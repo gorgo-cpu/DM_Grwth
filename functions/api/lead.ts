@@ -12,7 +12,6 @@ function validateLeadData(data: unknown): data is LeadFormData {
   const d = data as Record<string, unknown>;
   return (
     typeof d.name === "string" &&
-<<<<<<< HEAD
     d.name.trim().length >= 2 &&
     typeof d.email === "string" &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) &&
@@ -20,15 +19,6 @@ function validateLeadData(data: unknown): data is LeadFormData {
     d.company.trim().length >= 2 &&
     typeof d.message === "string" &&
     d.message.trim().length >= 10
-=======
-    d.name.length >= 2 &&
-    typeof d.email === "string" &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) &&
-    typeof d.company === "string" &&
-    d.company.length >= 2 &&
-    typeof d.message === "string" &&
-    d.message.length >= 10
->>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
   );
 }
 
@@ -37,15 +27,12 @@ export async function onRequest(context: {
   env: {
     SUPABASE_URL: string;
     SUPABASE_SERVICE_ROLE_KEY: string;
-<<<<<<< HEAD
     MAILGUN_API_KEY?: string;
     MAILGUN_API?: string;
     MAILGUN_DOMAIN?: string;
     MAILGUN_FROM?: string;
     MAILGUN_TO?: string;
     MAILGUN_API_BASE?: string;
-=======
->>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
   };
 }): Promise<Response> {
   const corsHeaders = {
@@ -69,7 +56,6 @@ export async function onRequest(context: {
     const body = await context.request.json();
 
     if (!validateLeadData(body)) {
-<<<<<<< HEAD
       return new Response(JSON.stringify({ ok: false, error: "Invalid data" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -77,7 +63,6 @@ export async function onRequest(context: {
     }
 
     const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY } = context.env;
-
     if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
       console.error("Missing Supabase environment variables");
       return new Response(JSON.stringify({ ok: false, error: "Server misconfigured" }), {
@@ -103,37 +88,6 @@ export async function onRequest(context: {
         email: cleanLead.email,
         company: cleanLead.company,
         message: cleanLead.message,
-=======
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          error: "Invalid data",
-        }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        },
-      );
-    }
-
-    const supabase = createClient(
-      context.env.SUPABASE_URL,
-      context.env.SUPABASE_SERVICE_ROLE_KEY,
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-        },
-      },
-    );
-
-    const { error } = await supabase.from("leads").insert([
-      {
-        name: body.name,
-        email: body.email,
-        company: body.company,
-        message: body.message,
->>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
       },
     ]);
 
@@ -145,7 +99,6 @@ export async function onRequest(context: {
       });
     }
 
-<<<<<<< HEAD
     const mailgunApiKey = context.env.MAILGUN_API_KEY ?? context.env.MAILGUN_API;
     const mailgunDomain = context.env.MAILGUN_DOMAIN;
     const mailgunFrom = context.env.MAILGUN_FROM;
@@ -184,8 +137,6 @@ ${cleanLead.message}`;
       console.warn("Mailgun environment variables missing; skipping email send");
     }
 
-=======
->>>>>>> beb1ea251b23458612440d77875abcc4b9ef2f24
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
